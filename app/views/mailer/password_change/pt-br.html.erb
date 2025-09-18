@@ -1,9 +1,90 @@
-Sua senha #{config.product_name} foi alterada
+<style>
+  .password-card {
+    background: #ffffff;
+    border: 2px solid #28a745;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .password-header {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .password-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .password-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .password-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .success-info {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .account-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .security-note {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+</style>
 
-<p>Oi #{user.firstname},</p>
-<br>
-<p>A senha para a sua conta #{config.product_name} <b>#{user.login}</b> foi alterada recentemente.</p>
-<br>
-<p>Esta atividade não é conhecida por você ? Caso não, entre em contato com o administrador do sistema.</p>
-<br>
-<p>Time #{config.product_name}</p>
+<div class="password-card">
+  <div class="password-header">
+    <div class="password-title">✅ Senha Alterada</div>
+    <div class="password-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="password-content">
+    <div class="greeting">Olá #{user.firstname}! 👋</div>
+    
+    <div class="success-info">
+      <h4 style="color: #155724; margin-top: 0;">✅ Senha alterada com sucesso!</h4>
+      <div>
+        A senha para sua conta foi alterada recentemente com sucesso.
+      </div>
+    </div>
+    
+    <div class="account-info">
+      <div style="color: #666; margin-bottom: 5px;">Conta afetada:</div>
+      <div style="font-weight: bold; color: #28a745; font-size: 18px;">#{user.login}</div>
+    </div>
+    
+    <div class="security-note">
+      <h4 style="color: #856404; margin-top: 0;">🚫 Não foi você?</h4>
+      <div>
+        Se esta atividade não é conhecida por você, entre em contato com o administrador do sistema imediatamente. Sua conta pode ter sido comprometida.
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Time #{config.product_name}</div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,88 @@
-Ticket de teste!
+<style>
+  .test-card {
+    background: #ffffff;
+    border: 2px solid #6f42c1;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .test-header {
+    background: linear-gradient(135deg, #6f42c1 0%, #8e44ad 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .test-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .test-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .test-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .test-info {
+    background: #e2d9f3;
+    border-left: 4px solid #6f42c1;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    text-align: center;
+  }
+  .customer-signature {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    border: 1px dashed #6f42c1;
+  }
+  .emoji-large {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+</style>
 
-<div>Prezado #{agent.firstname},</div>
-<br>
-<div>Este é um <b>ticket de teste</b>. Sou cliente e preciso de ajuda! :)</div>
-<br>
-<div>#{customer.fullname}</div>
-<br>
-<div>Time #{config.product_name}</div>
+<div class="test-card">
+  <div class="test-header">
+    <div class="test-title">🧪 Ticket de Teste</div>
+    <div class="test-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="test-content">
+    <div class="greeting">Prezado #{agent.firstname}! 👋</div>
+    
+    <div class="test-info">
+      <h4 style="color: #493267; margin-top: 0;">🧪 Este é um ticket de teste!</h4>
+      <div class="emoji-large">🆘</div>
+      <div>
+        Eu sou um cliente e preciso de ajuda! 😊
+      </div>
+      <div style="margin-top: 15px; font-style: italic; color: #666;">
+        (Este é apenas um teste do sistema de tickets)
+      </div>
+    </div>
+    
+    <div class="customer-signature">
+      <h4 style="color: #6f42c1; margin-top: 0;">👤 Cliente de Teste</h4>
+      <div style="font-weight: bold; color: #493267;">
+        #{customer.fullname}
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Time #{config.product_name}</div>
+    </div>
+  </div>
+</div>

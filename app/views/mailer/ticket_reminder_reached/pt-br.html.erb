@@ -1,18 +1,105 @@
-Lembrete de Ticket (#{ticket.title})
+<style>
+  .ticket-card {
+    background: #ffffff;
+    border: 2px solid #17a2b8;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .ticket-header {
+    background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .ticket-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .ticket-title {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.95;
+  }
+  .ticket-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .reminder-info {
+    background: #d1ecf1;
+    border-left: 4px solid #17a2b8;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .customer-info {
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  .ticket-details {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fefefe;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+  }
+  .action-button {
+    display: inline-block;
+    background: #17a2b8;
+    color: white !important;
+    padding: 12px 24px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #138496;
+    text-decoration: none !important;
+  }
+</style>
 
-<div>Olá, #{recipient.firstname},</div>
-<br>
-<div>Um ticket precisa de atenção: lembrete para (#{ticket.title}) com o cliente "<b>#{ticket.customer.longname}</b>".</div>
-<br>
-<% if @objects[:artigo] %>
-  <div>
-  Detalhes:
-  <blockquote type="cite">
-  #{article.body_as_html}
-  </blockquote>
+<div class="ticket-card">
+  <div class="ticket-header">
+    <div class="ticket-number">🔔 Lembrete de Ticket</div>
+    <div class="ticket-title">#{ticket.title}</div>
   </div>
-<% end %>
-<br>
-<div>
-  <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app">Veja isso em #{config.product_name}</ a>
+  
+  <div class="ticket-content">
+    <div class="greeting">Olá #{recipient.firstname}! 🔔</div>
+    
+    <div class="reminder-info">
+      <h4 style="color: #0c5460; margin-top: 0;">📋 Ticket precisa de atenção!</h4>
+      <div class="customer-info">
+        Cliente: <strong>#{ticket.customer.longname}</strong>
+      </div>
+      <div>
+        Este ticket possui um lembrete que foi acionado e precisa de sua atenção.
+      </div>
+    </div>
+    
+    <% if @objects[:article] %>
+      <div class="ticket-details">
+        <h4 style="color: #17a2b8; margin-top: 0;">📝 Detalhes:</h4>
+        <blockquote type="cite" style="border-left: 3px solid #17a2b8; padding-left: 15px; margin: 0; color: #555;">
+          #{article.body_as_html}
+        </blockquote>
+      </div>
+    <% end %>
+    
+    <div style="text-align: center;">
+      <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app" class="action-button">
+        🔔 Ver Ticket no #{config.product_name}
+      </a>
+    </div>
+  </div>
 </div>

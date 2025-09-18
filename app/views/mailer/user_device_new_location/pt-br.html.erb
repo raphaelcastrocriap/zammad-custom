@@ -1,19 +1,136 @@
-#{config.product_name} login detectado em um novo país
+<style>
+  .security-card {
+    background: #ffffff;
+    border: 2px solid #17a2b8;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .security-header {
+    background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .security-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .security-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .security-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .alert-info {
+    background: #d1ecf1;
+    border-left: 4px solid #17a2b8;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .device-details {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  .device-item {
+    margin: 8px 0;
+    color: #555;
+  }
+  .device-label {
+    font-weight: bold;
+    color: #0c5460;
+  }
+  .action-buttons {
+    text-align: center;
+    margin: 25px 0;
+  }
+  .action-button {
+    display: inline-block;
+    background: #17a2b8;
+    color: white !important;
+    padding: 12px 24px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #138496;
+    text-decoration: none !important;
+  }
+  .warning-section {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+</style>
 
-<div>Oi #{user.firstname},</div>
-<br>
-<div>Isto é como se você tivesse usado sua conta com um <b>dispositivo conhecido, porém, de um outro país</b> em "#{user_device.created_at}":</div>
-<br>
-<div>
-Seu dispositivo: #{user_device.name}<br>
-Sua localização (relativa): #{user_device.location}<br>
-Seu IP: #{user_device.ip}<br>
+<div class="security-card">
+  <div class="security-header">
+    <div class="security-title">🌍 Novo País Detectado</div>
+    <div class="security-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="security-content">
+    <div class="greeting">Olá #{user.firstname}! 🌎</div>
+    
+    <div class="alert-info">
+      <h4 style="color: #0c5460; margin-top: 0;">🇺️ Login de novo país!</h4>
+      <div>
+        Detectamos que você fez login com um <strong>dispositivo conhecido, porém de um outro país</strong> em #{user_device.created_at}.
+      </div>
+    </div>
+    
+    <div class="device-details">
+      <h4 style="color: #0c5460; margin-top: 0;">📊 Detalhes do acesso:</h4>
+      <div class="device-item">
+        <span class="device-label">📱 Dispositivo:</span> #{user_device.name}
+      </div>
+      <div class="device-item">
+        <span class="device-label">🌍 Localização:</span> #{user_device.location}
+      </div>
+      <div class="device-item">
+        <span class="device-label">🌐 IP:</span> #{user_device.ip}
+      </div>
+    </div>
+    
+    <div class="alert-info">
+      <div>
+        ✅ O país foi adicionado à sua lista de dispositivos conhecidos.
+      </div>
+    </div>
+    
+    <div class="action-buttons">
+      <a href="#{config.http_type}://#{config.fqdn}/#profile/devices" class="action-button">
+        📱 Ver Meus Dispositivos
+      </a>
+    </div>
+    
+    <div class="warning-section">
+      <h4 style="color: #721c24; margin-top: 0;">🚫 Não foi você?</h4>
+      <div>
+        Se você não reconhece este login, remova o dispositivo, altere sua senha e entre em contato com o Administrador imediatamente. Alguém pode ter obtido acesso não autorizado à sua conta.
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Time #{config.product_name}</div>
+    </div>
+  </div>
 </div>
-<br>
-<div>O país foi adicionado na sua lista de dispositivos conhecidos, que pode ser visto aqui:</div>
-<br>
-<div><a href="#{config.http_type}://#{config.fqdn}/#profile/devices">#{config.http_type}://#{config.fqdn}/#profile/devices</a></div>
-<br>
-<div>Se não foi você, remova o dispositivo, altere sua senha e entre em contato com o Administrador. Alguém pode ter ganho acesso não autorizado à sua conta.</div>
-<br>
-<div>Time #{config.product_name}</div>

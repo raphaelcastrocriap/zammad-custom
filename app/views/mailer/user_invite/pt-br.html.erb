@@ -1,13 +1,104 @@
-Convite para #{config.product_name} em #{config.fqdn}
+<style>
+  .invite-card {
+    background: #ffffff;
+    border: 2px solid #de6b1c;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(222, 107, 28, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .invite-header {
+    background: linear-gradient(135deg, #de6b1c 0%, #f08a3c 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .invite-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .invite-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .invite-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .invite-info {
+    background: #fff8f2;
+    border-left: 4px solid #de6b1c;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .inviter-info {
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  .action-button {
+    display: inline-block;
+    background: #de6b1c;
+    color: white !important;
+    padding: 15px 30px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #c85a15;
+    text-decoration: none !important;
+  }
+  .signature {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    color: #666;
+  }
+</style>
 
-<div>Oi #{user.firstname},</div>
-<br>
-<div>Eu (#{current_user.firstname} #{current_user.lastname}) estou te convidando para #{config.product_name} - nossa plataforma de suporte.</div>
-<br>
-<div>Clique <a href="#{config.http_type}://#{config.fqdn}/#password_reset_verify/#{token.token}">aqui</a> e crie sua senha.</div>
-<br>
-<div>Divirta-se,</div>
-<br>
-<div>#{current_user.firstname} #{current_user.lastname}</div>
-<br>
-<div>Time #{config.product_name}</div>
+<div class="invite-card">
+  <div class="invite-header">
+    <div class="invite-title">🎉 Convite para #{config.product_name}</div>
+    <div class="invite-subtitle">#{config.fqdn}</div>
+  </div>
+  
+  <div class="invite-content">
+    <div class="greeting">Olá #{user.firstname}! 👋</div>
+    
+    <div class="inviter-info">
+      <strong>#{current_user.firstname} #{current_user.lastname}</strong> te convidou para nossa plataforma!
+    </div>
+    
+    <div class="invite-info">
+      <h4 style="color: #b85a15; margin-top: 0;">🎯 Bem-vindo ao #{config.product_name}!</h4>
+      <div>
+        Você foi convidado para nossa plataforma de suporte. É fácil começar!
+      </div>
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="#{config.http_type}://#{config.fqdn}/#password_reset_verify/#{token.token}" class="action-button">
+        🔑 Criar Minha Senha
+      </a>
+    </div>
+    
+    <div class="signature">
+      <div>Divirta-se! 🎆</div>
+      <br>
+      <div><strong>#{current_user.firstname} #{current_user.lastname}</strong></div>
+      <div>Time #{config.product_name}</div>
+    </div>
+  </div>
+</div>

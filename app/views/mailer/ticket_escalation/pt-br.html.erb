@@ -1,18 +1,109 @@
-Ticket escalado (#{ticket.title})
+<style>
+  .ticket-card {
+    background: #ffffff;
+    border: 2px solid #dc3545;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .ticket-header {
+    background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .ticket-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .ticket-title {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.95;
+  }
+  .ticket-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .escalation-info {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .customer-info {
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  .ticket-details {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fefefe;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+  }
+  .action-button {
+    display: inline-block;
+    background: #dc3545;
+    color: white !important;
+    padding: 12px 24px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #c82333;
+    text-decoration: none !important;
+  }
+  .escalation-time {
+    color: #dc3545;
+    font-weight: bold;
+  }
+</style>
 
-<div>Olá, #{recipient.firstname},</div>
-<br>
-<div>O ticket (#{ticket.title}) de "<b>#{ticket.customer.longname}</b>" foi escalado desde "#{ticket.escalation_at}"!</div>
-<br>
-<% if @objects[:artigo] %>
-  <div>
-  Detalhes:
-  <blockquote type="cite">
-  #{article.body_as_html}
-  </blockquote>
+<div class="ticket-card">
+  <div class="ticket-header">
+    <div class="ticket-number">🚨 Ticket Escalado</div>
+    <div class="ticket-title">#{ticket.title}</div>
   </div>
-<% end %>
-<br>
-<div>
-  <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app">Veja isso em #{config.product_name}</ a>
+  
+  <div class="ticket-content">
+    <div class="greeting">Olá #{recipient.firstname}! ⚠️</div>
+    
+    <div class="escalation-info">
+      <h4 style="color: #721c24; margin-top: 0;">📈 Ticket Escalado!</h4>
+      <div class="customer-info">
+        Cliente: <strong>#{ticket.customer.longname}</strong>
+      </div>
+      <div>
+        Este ticket foi escalado desde <span class="escalation-time">#{ticket.escalation_at}</span>
+      </div>
+    </div>
+    
+    <% if @objects[:article] %>
+      <div class="ticket-details">
+        <h4 style="color: #dc3545; margin-top: 0;">📝 Detalhes:</h4>
+        <blockquote type="cite" style="border-left: 3px solid #dc3545; padding-left: 15px; margin: 0; color: #555;">
+          #{article.body_as_html}
+        </blockquote>
+      </div>
+    <% end %>
+    
+    <div style="text-align: center;">
+      <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app" class="action-button">
+        🚨 Ver Ticket Urgente no #{config.product_name}
+      </a>
+    </div>
+  </div>
 </div>

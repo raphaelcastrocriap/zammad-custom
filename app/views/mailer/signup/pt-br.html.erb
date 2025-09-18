@@ -1,9 +1,112 @@
-Confirme sua conta #{config.product_name}, #{user.firstname} #{user.lastname}
+<style>
+  .signup-card {
+    background: #ffffff;
+    border: 2px solid #de6b1c;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(222, 107, 28, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .signup-header {
+    background: linear-gradient(135deg, #de6b1c 0%, #f08a3c 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .signup-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .signup-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .signup-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .welcome-info {
+    background: #fff8f2;
+    border-left: 4px solid #de6b1c;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .user-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .action-button {
+    display: inline-block;
+    background: #de6b1c;
+    color: white !important;
+    padding: 15px 30px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #c85a15;
+    text-decoration: none !important;
+  }
+  .instructions {
+    color: #666;
+    line-height: 1.5;
+    margin: 20px 0;
+    text-align: center;
+  }
+</style>
 
-<div>Olá #{user.firstname},</div>
-<br>
-<div>Confirme seu endereço de e-mail para completar sua conta #{config.product_name}. É fácil, basta clicar no link abaixo.</div>
-<br>
-<div><a href="#{url}">#{url}</a></div>
-<br>
-<div>Sua equipe #{config.product_name}</div>
+<div class="signup-card">
+  <div class="signup-header">
+    <div class="signup-title">🎉 Confirme sua Conta</div>
+    <div class="signup-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="signup-content">
+    <div class="greeting">Olá #{user.firstname}! 👋</div>
+    
+    <div class="welcome-info">
+      <h4 style="color: #b85a15; margin-top: 0;">🎆 Bem-vindo ao #{config.product_name}!</h4>
+      <div>
+        Estamos animados para tê-lo conosco! Só falta um último passo.
+      </div>
+    </div>
+    
+    <div class="user-info">
+      <div style="color: #666; margin-bottom: 5px;">Conta criada para:</div>
+      <div style="font-weight: bold; color: #de6b1c; font-size: 18px;">#{user.firstname} #{user.lastname}</div>
+    </div>
+    
+    <div class="instructions">
+      Para completar sua conta, confirme seu endereço de e-mail clicando no botão abaixo:
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="#{url}" class="action-button">
+        ✅ Confirmar Minha Conta
+      </a>
+    </div>
+    
+    <div class="instructions">
+      É fácil e rápido! Após a confirmação, você poderá aproveitar todos os recursos.
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Sua equipe #{config.product_name}</div>
+    </div>
+  </div>
+</div>

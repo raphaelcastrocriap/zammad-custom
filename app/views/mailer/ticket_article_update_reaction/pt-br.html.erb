@@ -1,19 +1,111 @@
-Artigo do chamado atualizado (#{ticket.title})
+<style>
+  .ticket-card {
+    background: #ffffff;
+    border: 2px solid #fd7e14;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(253, 126, 20, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .ticket-header {
+    background: linear-gradient(135deg, #fd7e14 0%, #ff8c00 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .ticket-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .ticket-title {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.95;
+  }
+  .ticket-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .reaction-info {
+    background: #fff0e6;
+    border-left: 4px solid #fd7e14;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    text-align: center;
+  }
+  .reaction-emoji {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+  .ticket-details {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fefefe;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+  }
+  .action-button {
+    display: inline-block;
+    background: #fd7e14;
+    color: white !important;
+    padding: 12px 24px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #e06b00;
+    text-decoration: none !important;
+  }
+  .author-info {
+    font-weight: bold;
+    color: #fd7e14;
+  }
+</style>
 
-<div>Olá #{recipient.firstname},</div>
-<br>
-<div>
-<%= @objects[:article].preferences.dig('whatsapp', 'reaction', 'author') %> reagiu com um <%= @objects[:article].preferences.dig('whatsapp', 'reaction', 'emoji') %> à mensagem de #{article.created_by.fullname}:
-</div>
-<br>
-<% if @objects[:article] %>
-  <div>
-    <blockquote type="cite">
-    #{article.body_as_html}
-    </blockquote>
+<div class="ticket-card">
+  <div class="ticket-header">
+    <div class="ticket-number">😊 Reação em Artigo</div>
+    <div class="ticket-title">#{ticket.title}</div>
   </div>
-<% end %>
-<br>
-<div>
-  <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}/#{article.id}" target="zammad_app">Ver isto no #{config.product_name}</a>
+  
+  <div class="ticket-content">
+    <div class="greeting">Olá #{recipient.firstname}! 😊</div>
+    
+    <div class="reaction-info">
+      <h4 style="color: #b85a00; margin-top: 0;">💬 Nova reação no WhatsApp!</h4>
+      <div class="author-info">
+        <%= @objects[:article].preferences.dig('whatsapp', 'reaction', 'author') %>
+      </div>
+      <div>reagiu com</div>
+      <div class="reaction-emoji">
+        <%= @objects[:article].preferences.dig('whatsapp', 'reaction', 'emoji') %>
+      </div>
+      <div>à mensagem de <strong>#{article.created_by.fullname}</strong></div>
+    </div>
+    
+    <% if @objects[:article] %>
+      <div class="ticket-details">
+        <h4 style="color: #fd7e14; margin-top: 0;">📝 Mensagem original:</h4>
+        <blockquote type="cite" style="border-left: 3px solid #fd7e14; padding-left: 15px; margin: 0; color: #555;">
+          #{article.body_as_html}
+        </blockquote>
+      </div>
+    <% end %>
+    
+    <div style="text-align: center;">
+      <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}/#{article.id}" target="zammad_app" class="action-button">
+        😊 Ver Reação no #{config.product_name}
+      </a>
+    </div>
+  </div>
 </div>

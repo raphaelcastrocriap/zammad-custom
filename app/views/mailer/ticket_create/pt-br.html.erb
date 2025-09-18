@@ -1,24 +1,118 @@
-Novo ticket (#{ticket.title})
+<style>
+  .ticket-card {
+    background: #ffffff;
+    border: 2px solid #de6b1c;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(222, 107, 28, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .ticket-header {
+    background: linear-gradient(135deg, #de6b1c 0%, #f08a3c 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .ticket-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .ticket-title {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.95;
+  }
+  .ticket-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .ticket-info {
+    background: #f8f9fa;
+    border-left: 4px solid #de6b1c;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .info-item {
+    margin: 8px 0;
+    color: #555;
+  }
+  .info-label {
+    font-weight: bold;
+    color: #de6b1c;
+  }
+  .ticket-details {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fefefe;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+  }
+  .action-button {
+    display: inline-block;
+    background: #de6b1c;
+    color: white !important;
+    padding: 12px 24px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #c85a15;
+    text-decoration: none !important;
+  }
+  .creator-info {
+    color: #666;
+    margin-bottom: 20px;
+  }
+</style>
 
-<div>Oi #{recipient.firstname},</div>
-<br>
-<div>Um novo ticket (#{ticket.title}) foi criado por "<b>#{current_user.longname}</b>".</div>
-<br>
-<div>
-Grupo: #{ticket.group.name}<br>
-Proprietário: #{ticket.owner.fullname}<br>
-State: #{t(ticket.state.name)}<br>
-</div>
-<br>
-<% if @objects[:article] %>
-  <div>
-  Detalhes:
-  <blockquote type="cite">
-  #{article.body_as_html}
-  </blockquote>
+<div class="ticket-card">
+  <div class="ticket-header">
+    <div class="ticket-number">Ticket ##{ticket.number}</div>
+    <div class="ticket-title">#{ticket.title}</div>
   </div>
-<% end %>
-<br>
-<div>
-  <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app">Veja mais informações no Zammad</a>
+  
+  <div class="ticket-content">
+    <div class="greeting">Olá #{recipient.firstname}! 👋</div>
+    
+    <div class="creator-info">
+      Um novo ticket foi criado por <strong>#{current_user.longname}</strong>.
+    </div>
+    
+    <div class="ticket-info">
+      <div class="info-item">
+        <span class="info-label">Grupo:</span> #{ticket.group.name}
+      </div>
+      <div class="info-item">
+        <span class="info-label">Responsável:</span> #{ticket.owner.fullname}
+      </div>
+      <div class="info-item">
+        <span class="info-label">Status:</span> #{t(ticket.state.name)}
+      </div>
+    </div>
+    
+    <% if @objects[:article] %>
+      <div class="ticket-details">
+        <h4 style="color: #de6b1c; margin-top: 0;">Detalhes:</h4>
+        <blockquote type="cite" style="border-left: 3px solid #de6b1c; padding-left: 15px; margin: 0; color: #555;">
+          #{article.body_as_html}
+        </blockquote>
+      </div>
+    <% end %>
+    
+    <div style="text-align: center;">
+      <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app" class="action-button">
+        🎫 Ver Ticket no #{config.product_name}
+      </a>
+    </div>
+  </div>
 </div>

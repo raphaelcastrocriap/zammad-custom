@@ -1,15 +1,126 @@
-Login de administração para #{config.product_name}
+<style>
+  .admin-card {
+    background: #ffffff;
+    border: 2px solid #dc3545;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .admin-header {
+    background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .admin-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .admin-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .admin-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .login-info {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .account-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .action-button {
+    display: inline-block;
+    background: #dc3545;
+    color: white !important;
+    padding: 15px 30px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #c82333;
+    text-decoration: none !important;
+  }
+  .instructions {
+    color: #666;
+    line-height: 1.5;
+    margin: 20px 0;
+  }
+  .security-note {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+</style>
 
-<div>Olá #{user.firstname},</div>
-<br>
-<div>Recebemos um pedido de login de administração para a sua conta #{config.product_name} <b>#{user.login}</b>.</div>
-<br>
-<div>Por favor, clique no link abaixo (ou copie e cole a URL no seu navegador) para prosseguir:</div>
-<br>
-<div><a href="#{url}">#{url}</a></div>
-<br>
-<div>Este link o levará para uma página onde você pode fazer login.</div>
-<br>
-<div>Se você não deseja fazer login, por favor, ignore esta mensagem.</div>
-<br>
-<div>Sua equipe #{config.product_name}</div>
+<div class="admin-card">
+  <div class="admin-header">
+    <div class="admin-title">🔐 Login Administrativo</div>
+    <div class="admin-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="admin-content">
+    <div class="greeting">Olá #{user.firstname}! 🔒</div>
+    
+    <div class="login-info">
+      <h4 style="color: #721c24; margin-top: 0;">🚪 Solicitação de login administrativo</h4>
+      <div>
+        Recebemos um pedido de login de administrador para sua conta.
+      </div>
+    </div>
+    
+    <div class="account-info">
+      <div style="color: #666; margin-bottom: 5px;">Conta:</div>
+      <div style="font-weight: bold; color: #dc3545; font-size: 18px;">#{user.login}</div>
+    </div>
+    
+    <div class="instructions">
+      Para prosseguir com o login administrativo, clique no botão abaixo:
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="#{url}" class="action-button">
+        🔐 Fazer Login Administrativo
+      </a>
+    </div>
+    
+    <div class="instructions">
+      Este link o levará para uma página de login segura onde você pode acessar as funções administrativas.
+    </div>
+    
+    <div class="security-note">
+      <h4 style="color: #155724; margin-top: 0;">🚫 Não solicitou?</h4>
+      <div>
+        Se você não solicitou este login administrativo, ignore esta mensagem. Sua conta permanecerá segura.
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Sua equipe #{config.product_name}</div>
+    </div>
+  </div>
+</div>

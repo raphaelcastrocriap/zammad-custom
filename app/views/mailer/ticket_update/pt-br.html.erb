@@ -1,29 +1,120 @@
-Ticket atualizado (#{ticket.title})
+<style>
+  .ticket-card {
+    background: #ffffff;
+    border: 2px solid #de6b1c;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(222, 107, 28, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .ticket-header {
+    background: linear-gradient(135deg, #de6b1c 0%, #f08a3c 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .ticket-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .ticket-title {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.95;
+  }
+  .ticket-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .update-info {
+    background: #e8f4fd;
+    border-left: 4px solid #17a2b8;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .changes-section {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .change-item {
+    margin: 5px 0;
+    color: #555;
+  }
+  .ticket-details {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fefefe;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+  }
+  .action-button {
+    display: inline-block;
+    background: #de6b1c;
+    color: white !important;
+    padding: 12px 24px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #c85a15;
+    text-decoration: none !important;
+  }
+  .updater-info {
+    color: #666;
+    margin-bottom: 20px;
+  }
+</style>
 
-<div>Olá, #{recipient.firstname},</div>
-<br>
-<div>
-O ticket (#{ticket.title}) foi atualizado por "<b>#{current_user.longname}</b>".
-</div>
-<br>
-<% if @objects[:changes].present? %>
-  <div>
-  Mudanças:<br>
-  <% @objects[:changes].each do |key, value| %>
-    <%= t key %>: <%= h value[0] %> -&gt; <%= h value[1] %><br>
-  <% end %>
+<div class="ticket-card">
+  <div class="ticket-header">
+    <div class="ticket-number">🔄 Ticket Atualizado</div>
+    <div class="ticket-title">#{ticket.title}</div>
   </div>
-<% end %>
-<br>
-<% if @objects[:article] %>
-  <div>
-Detalhes:
-  <blockquote type="cite">
-  #{article.body_as_html}
-  </blockquote>
+  
+  <div class="ticket-content">
+    <div class="greeting">Olá #{recipient.firstname}! 👋</div>
+    
+    <div class="updater-info">
+      O ticket foi atualizado por <strong>#{current_user.longname}</strong>.
+    </div>
+    
+    <% if @objects[:changes].present? %>
+      <div class="changes-section">
+        <h4 style="color: #856404; margin-top: 0;">📋 Mudanças realizadas:</h4>
+        <% @objects[:changes].each do |key, value| %>
+          <div class="change-item">
+            <strong><%= t key %>:</strong> <%= h value[0] %> → <%= h value[1] %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <% if @objects[:article] %>
+      <div class="ticket-details">
+        <h4 style="color: #de6b1c; margin-top: 0;">💬 Detalhes da atualização:</h4>
+        <blockquote type="cite" style="border-left: 3px solid #de6b1c; padding-left: 15px; margin: 0; color: #555;">
+          #{article.body_as_html}
+        </blockquote>
+      </div>
+    <% end %>
+    
+    <div style="text-align: center;">
+      <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}<% if @objects[:article] %>/#{article.id}<% end %>" target="zammad_app" class="action-button">
+        🎫 Ver Ticket no #{config.product_name}
+      </a>
+    </div>
   </div>
-<% end %>
-<br>
-<div>
-  <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}<% if @objects[:article] %>/#{article.id} <% end %>" target="zammad_app">Veja isso em #{config.product_name}</a>
 </div>

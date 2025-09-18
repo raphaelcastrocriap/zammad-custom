@@ -1,9 +1,86 @@
-#{config.product_name} conta vinculada a um aplicativo externo
+<style>
+  .auth-card {
+    background: #ffffff;
+    border: 2px solid #6f42c1;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .auth-header {
+    background: linear-gradient(135deg, #6f42c1 0%, #8e44ad 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .auth-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .auth-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .auth-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .link-info {
+    background: #e2d9f3;
+    border-left: 4px solid #6f42c1;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .provider-name {
+    font-weight: bold;
+    color: #6f42c1;
+    font-size: 18px;
+  }
+  .warning-section {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+</style>
 
-<div>Hi #{user.firstname},</div>
-<br>
-<div>Parece que você vinculou sua conta <b>a uma aplicativo externo</b> "#{t(provider)}".</div>
-<br>
-<div>Se não foi você, por favor, remova a conta vinculada do seu perfil e modifique a senha do aplicativo externo. Alguém pode ter acessado de forma não autorizada sua conta no serviço externo.</div>
-<br>
-<div>Seu Time #{config.product_name}</div>
+<div class="auth-card">
+  <div class="auth-header">
+    <div class="auth-title">🔗 Conta Vinculada</div>
+    <div class="auth-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="auth-content">
+    <div class="greeting">Olá #{user.firstname}! 🔗</div>
+    
+    <div class="link-info">
+      <h4 style="color: #493267; margin-top: 0;">🔗 Nova vinculação detectada!</h4>
+      <div>
+        Sua conta foi vinculada ao aplicativo externo:
+      </div>
+      <div class="provider-name">
+        📱 #{t(provider)}
+      </div>
+    </div>
+    
+    <div class="warning-section">
+      <h4 style="color: #721c24; margin-top: 0;">🚫 Não foi você?</h4>
+      <div>
+        Se você não vinculou sua conta a este aplicativo, remova a conta vinculada do seu perfil e modifique a senha do aplicativo externo imediatamente. Alguém pode ter acessado de forma não autorizada sua conta no serviço externo.
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Seu Time #{config.product_name}</div>
+    </div>
+  </div>
+</div>

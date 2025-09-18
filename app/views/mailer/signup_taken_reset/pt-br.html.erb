@@ -1,15 +1,114 @@
-Redefina sua senha #{config.product_name}
+<style>
+  .signup-card {
+    background: #ffffff;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .signup-header {
+    background: linear-gradient(135deg, #ffc107 0%, #ffca28 100%);
+    color: #212529;
+    padding: 20px;
+    text-align: center;
+  }
+  .signup-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .signup-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.8;
+  }
+  .signup-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .warning-info {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .action-button {
+    display: inline-block;
+    background: #ffc107;
+    color: #212529 !important;
+    padding: 15px 30px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #e0a800;
+    text-decoration: none !important;
+  }
+  .instructions {
+    color: #666;
+    line-height: 1.5;
+    margin: 20px 0;
+  }
+  .security-note {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+</style>
 
-<div>Olá #{user.firstname},</div>
-<br>
-<div>Você ou alguém tentou se cadastrar com este endereço de e-mail. No entanto, este e-mail já está sendo usado.</div>
-<br>
-<div>Se você deseja redefinir sua senha, clique no link abaixo (ou copie e cole a URL no seu navegador):</div>
-<br>
-<div><a href="#{url}">#{url}</a></div>
-<br>
-<div>Este link o levará a uma página onde você pode alterar sua senha.</div>
-<br>
-<div>Se você não deseja redefinir sua senha, por favor, ignore esta mensagem. Sua senha não será redefinida.</div>
-<br>
-<div>Sua equipe #{config.product_name}</div>
+<div class="signup-card">
+  <div class="signup-header">
+    <div class="signup-title">⚠️ E-mail Já Cadastrado</div>
+    <div class="signup-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="signup-content">
+    <div class="greeting">Olá #{user.firstname}! 👋</div>
+    
+    <div class="warning-info">
+      <h4 style="color: #856404; margin-top: 0;">📧 E-mail já em uso</h4>
+      <div>
+        Você ou alguém tentou se cadastrar com este endereço de e-mail, mas ele já está sendo usado em nosso sistema.
+      </div>
+    </div>
+    
+    <div class="instructions">
+      Se você esqueceu sua senha e deseja redefini-la, clique no botão abaixo:
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="#{url}" class="action-button">
+        🔑 Redefinir Minha Senha
+      </a>
+    </div>
+    
+    <div class="instructions">
+      Este link o levará a uma página onde você pode alterar sua senha com segurança.
+    </div>
+    
+    <div class="security-note">
+      <h4 style="color: #155724; margin-top: 0;">🚫 Não quer redefinir?</h4>
+      <div>
+        Se você não deseja redefinir sua senha, simplesmente ignore esta mensagem. Sua senha atual permanecerá inalterada.
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Sua equipe #{config.product_name}</div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,126 @@
-Redefina sua senha #{config.product_name}
+<style>
+  .password-card {
+    background: #ffffff;
+    border: 2px solid #de6b1c;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(222, 107, 28, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .password-header {
+    background: linear-gradient(135deg, #de6b1c 0%, #f08a3c 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .password-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .password-subtitle {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  .password-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .reset-info {
+    background: #fff8f2;
+    border-left: 4px solid #de6b1c;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .account-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .action-button {
+    display: inline-block;
+    background: #de6b1c;
+    color: white !important;
+    padding: 15px 30px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #c85a15;
+    text-decoration: none !important;
+  }
+  .instructions {
+    color: #666;
+    line-height: 1.5;
+    margin: 20px 0;
+  }
+  .security-note {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+</style>
 
-<div>Olá #{user.firstname},</div>
-<br>
-<div>Recebemos um pedido para redefinir a senha da sua conta #{config.product_name} <b>#{user.login}</b>.</div>
-<br>
-<div>Se você deseja redefinir sua senha, clique no link abaixo (ou copie e cole a URL no seu navegador):</div>
-<br>
-<div><a href="#{url}">#{url}</a></div>
-<br>
-<div>Este link o levará a uma página onde você pode alterar sua senha.</div>
-<br>
-<div>Se você não deseja redefinir sua senha, por favor, ignore esta mensagem. Sua senha não será redefinida.</div>
-<br>
-<div>Sua equipe #{config.product_name}</div>
+<div class="password-card">
+  <div class="password-header">
+    <div class="password-title">🔑 Redefinir Senha</div>
+    <div class="password-subtitle">#{config.product_name}</div>
+  </div>
+  
+  <div class="password-content">
+    <div class="greeting">Olá #{user.firstname}! 👋</div>
+    
+    <div class="reset-info">
+      <h4 style="color: #b85a15; margin-top: 0;">🔒 Solicitação de redefinição de senha</h4>
+      <div>
+        Recebemos um pedido para redefinir a senha da sua conta.
+      </div>
+    </div>
+    
+    <div class="account-info">
+      <div style="color: #666; margin-bottom: 5px;">Conta:</div>
+      <div style="font-weight: bold; color: #de6b1c; font-size: 18px;">#{user.login}</div>
+    </div>
+    
+    <div class="instructions">
+      Se você deseja redefinir sua senha, clique no botão abaixo:
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="#{url}" class="action-button">
+        🔑 Redefinir Minha Senha
+      </a>
+    </div>
+    
+    <div class="instructions">
+      Este link o levará a uma página onde você pode alterar sua senha com segurança.
+    </div>
+    
+    <div class="security-note">
+      <h4 style="color: #155724; margin-top: 0;">🚫 Não solicitou?</h4>
+      <div>
+        Se você não solicitou a redefinição de senha, ignore esta mensagem. Sua senha permanecerá inalterada e segura.
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+      <div>Sua equipe #{config.product_name}</div>
+    </div>
+  </div>
+</div>

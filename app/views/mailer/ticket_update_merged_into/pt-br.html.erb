@@ -1,11 +1,89 @@
-O ticket (#{ticket.title}) foi mesclado em outro ticket
+<style>
+  .ticket-card {
+    background: #ffffff;
+    border: 2px solid #6f42c1;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.15);
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .ticket-header {
+    background: linear-gradient(135deg, #6f42c1 0%, #8e44ad 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  .ticket-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .ticket-title {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.95;
+  }
+  .ticket-content {
+    padding: 25px;
+  }
+  .greeting {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .merge-info {
+    background: #e2d9f3;
+    border-left: 4px solid #6f42c1;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .action-button {
+    display: inline-block;
+    background: #6f42c1;
+    color: white !important;
+    padding: 12px 24px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  .action-button:hover {
+    background: #5a2d91;
+    text-decoration: none !important;
+  }
+  .merger-info {
+    color: #666;
+    margin-bottom: 20px;
+  }
+</style>
 
-<div>Oi #{recipient.firstname},</div>
-<br>
-<div>
-O ticket (#{ticket.title}) foi mesclado em outro ticket por "<b>#{current_user.longname}</b>".
-</div>
-<br>
-<div>
-  <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app">Exibir isso em #{config.product_name}</a>
+<div class="ticket-card">
+  <div class="ticket-header">
+    <div class="ticket-number">🔗 Ticket Mesclado</div>
+    <div class="ticket-title">#{ticket.title}</div>
+  </div>
+  
+  <div class="ticket-content">
+    <div class="greeting">Olá #{recipient.firstname}! 🔗</div>
+    
+    <div class="merger-info">
+      Ação realizada por <strong>#{current_user.longname}</strong>
+    </div>
+    
+    <div class="merge-info">
+      <h4 style="color: #493267; margin-top: 0;">🔗 Ticket foi mesclado!</h4>
+      <div>
+        Este ticket foi mesclado em outro ticket. Todas as informações e conversas foram consolidadas.
+      </div>
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="#{config.http_type}://#{config.fqdn}/#ticket/zoom/#{ticket.id}" target="zammad_app" class="action-button">
+        🔗 Ver Ticket no #{config.product_name}
+      </a>
+    </div>
+  </div>
 </div>
